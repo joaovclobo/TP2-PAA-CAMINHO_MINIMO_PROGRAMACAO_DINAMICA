@@ -14,7 +14,6 @@ enum trueFalse {
 };
 
 void inicializaMatriz(Matriz *matriz, int linhas, int colunas);
-void printMatriz(Matriz matriz);
 
 //TODO avaliar se da pra reaproveitar
 void geraFazenda1(int linhas, int colunas, int** matrizVazia, int* vetorFib);

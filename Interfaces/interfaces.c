@@ -1,8 +1,9 @@
+#include "interfaces.h"
 #include "../LeituraDados/leituraArquivos.h"
 
 /** Funções de interface*/
 void cabecalho(){
-    printf("\n\n|============================ Universidade Federal De Vicosa - Campus Florestal ============================|\n|================ Trabalho prático 2 - Disciplina CCF 330 - PROJETO E ANÁLISE DE ALGORITMOS ================|\n");
+    printf("\n\n|============================ Universidade Federal De Viçosa - Campus Florestal ============================|\n|================ Trabalho prático 2 - Disciplina CCF 330 - PROJETO E ANÁLISE DE ALGORITMOS ================|\n");
     printf("|======================================== Viagem com custo mínimo ==========================================|\n\n");
     printf("Professor responsável:\n    Daniel Mendes Barbosa\n\nAlunos responsáveis:\n    Thiago Rocha - 4225    \n    Aroldo Simões - 4250    \n    Joao Lobo - 4693\n\n");
     printf("|===========================================================================================================|\n\n");
@@ -19,6 +20,7 @@ int menuOpcoes(){
     return opcao;
 }
 
+//TODO avaliar se da pra reaproveitar
 void exibicaoOpcoes(int opcao, Matriz matrizCaminhos, Matriz matrizFazenda, int linhas, int colunas){
 
     switch (opcao){
@@ -40,4 +42,53 @@ void printVetor(int* vetor, int tamVetor){
     }
 
     putchar('\n');
+}
+
+void printMatriz(Matriz matriz){
+
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    for(int i = 0; i < matriz.linhas; i++){
+        printf("\n");
+        for(int j = 0; j < matriz.colunas; j++){
+            printf(" %2d ", matriz.matrizDinamica[i][j]);
+        }
+    }
+    printf("\n");
+
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    printf("\n");
+}
+
+void printMatrizDelay(Matriz matriz){
+
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    for(int i = 0; i < matriz.linhas; i++){
+        printf("\n");
+        for(int j = 0; j < matriz.colunas; j++){
+            if(matriz.matrizDinamica[i][j] == 0){
+                printf("%s %2d %s",RED, matriz.matrizDinamica[i][j],RESET);
+            }
+            else{
+                printf("%s %2d %s",GREEN, matriz.matrizDinamica[i][j],RESET);
+            }
+            
+        }
+    }
+    printf("\n");
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    printf("\n");
+    usleep(400000);
+
 }
