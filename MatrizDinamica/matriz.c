@@ -31,6 +31,34 @@ void printMatriz(Matriz matriz){
     printf("\n");
 }
 
+void printMatrizDelay(Matriz matriz){
+
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    for(int i = 0; i < matriz.linhas; i++){
+        printf("\n");
+        for(int j = 0; j < matriz.colunas; j++){
+            if(matriz.matDinamica[i][j] == 0){
+                printf("%s %2d %s",RED, matriz.matDinamica[i][j],RESET);
+            }
+            else{
+                printf("%s %2d %s",GREEN, matriz.matDinamica[i][j],RESET);
+            }
+            
+        }
+    }
+    printf("\n");
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    printf("\n");
+    usleep(400000);
+
+}
+
 //TODO avaliar se da pra reaproveitar
 void geraFazenda1(int linhas, int colunas, int** matrizVazia, int* vetorFib){
     //Função responsável por gerar aleatoriamente uma matriz que representa a Fazenda.
@@ -151,7 +179,6 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
     
             if (i < lin){
                 matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
-                printf("IF do i:\nVal i: %d, Val j: %d\n", i, j);
                 printMatriz(matCaminhos);
                 putchar('\n');
 
@@ -160,7 +187,6 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
 
             if (j < col){
                 matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
-                printf("IF do j:\nVal i: %d, Val j: %d\n", i, j);
                 printMatriz(matCaminhos);
                 putchar('\n');
                 
@@ -169,5 +195,40 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
         }
     }
 
-    return matPesos.matDinamica[0][0];    
+    return matCaminhos.matDinamica[0][0];    
+}
+
+void encontraCaminhoMin(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
+    
+    somaCaminho += caminhos.matDinamica[i][j];
+
+    //Esta condição visa tornar o algorítimo de encontrar o caminho minimo mais eficiente
+    if (somaCaminho > caminhoMin){
+        somaCaminho = 0;
+        return;
+    }
+    
+    if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
+
+        if (somaCaminho == caminhoMin){
+
+            *numCaminhosMins += 1;
+        }
+
+        printf("Soma do caminho: %d\n", somaCaminho);
+        somaCaminho = 0;
+        return;
+
+    } else {
+
+        if (i + 1 < caminhos.linhas){
+
+            encontraCaminhoMin(i + 1, j, caminhos, caminhoMin, somaCaminho, numCaminhosMins);
+        } 
+        
+        if (j + 1 < caminhos.colunas){
+            
+            encontraCaminhoMin(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
+        }
+    }
 }

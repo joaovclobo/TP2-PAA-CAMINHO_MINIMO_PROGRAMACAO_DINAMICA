@@ -3,7 +3,8 @@
 
 int main(){
 
-    int linhas, colunas, opcao;
+    int linhas, colunas, opcao, caminhoMin;
+    int numCaminhosMin = 0;
 
     short encerra = false;
 
@@ -33,11 +34,9 @@ int main(){
         putchar('\n');
 
         int caminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
-
-        printf("Soma Mínima: %d", caminhoMin);
-        // opcao = menuOpcoes();
-
-        // exibicaoOpcoes(opcao, matCaminhos, matrizFazenda, linhas, colunas);
+        encontraCaminhoMin(0, 0, matPesos, caminhoMin, 0, &numCaminhosMin);
+        printf("Soma Mínima: %d\n", caminhoMin);
+        printf("Quantidade de Caminhos: %d", numCaminhosMin);
 
         free(matCaminhos.matDinamica);
         free(matPesos.matDinamica);

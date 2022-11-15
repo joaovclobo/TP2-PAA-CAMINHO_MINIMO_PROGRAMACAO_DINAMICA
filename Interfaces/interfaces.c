@@ -42,31 +42,3 @@ void printVetor(int* vetor, int tamVetor){
 
     putchar('\n');
 }
-
-void printMatrizDelay(Matriz matriz){
-
-    for (int i = 0; i < matriz.colunas; i++){
-        printf("----");
-    }
-
-    for(int i = 0; i < matriz.linhas; i++){
-        printf("\n");
-        for(int j = 0; j < matriz.colunas; j++){
-            if(matriz.matDinamica[i][j] == 0){
-                printf("%s %2d %s",RED, matriz.matDinamica[i][j],RESET);
-            }
-            else{
-                printf("%s %2d %s",GREEN, matriz.matDinamica[i][j],RESET);
-            }
-            
-        }
-    }
-    printf("\n");
-    for (int i = 0; i < matriz.colunas; i++){
-        printf("----");
-    }
-
-    printf("\n");
-    usleep(400000);
-
-}

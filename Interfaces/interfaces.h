@@ -16,4 +16,3 @@ void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int lin
 
 /** Funções para mostar as matrizes ou vetores*/
 void printVetor(int* vetor, int tamVetor);
-void printMatrizDelay(Matriz matriz);
