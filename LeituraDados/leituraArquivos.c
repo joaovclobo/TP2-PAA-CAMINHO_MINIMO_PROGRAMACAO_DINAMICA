@@ -6,11 +6,11 @@ FILE* abreArquivo(){
     FILE *fptr;
 
     do{
-        printf("\nInsira o nome completo do arquivo com a fazenda (o arquivo deve estar na mesma pasta que está este executavel - Ex. do nome da entrada esperada: fazenda.txt)\n");
+        printf("\nInsira o nome completo do arquivo com a fazenda (o arquivo deve estar na mesma pasta que está este executavel e deve ter a extensão \".txt\")\n");
         // scanf("%s", nomeArquivo);
-        strcpy(nomeArquivo, "./ArquivosTeste/matrizExemplo4.txt");
+        strcpy(nomeArquivo, "./ArquivosTeste/cam7");
         
-        fptr = fopen(nomeArquivo, "r");
+        fptr = fopen(strcat(nomeArquivo, ".txt"), "r");
 
         if (fptr == NULL){
             printf("\nERRO: Arquivo não encontrado!\nPor favor, insira um arquivo válido!\n");

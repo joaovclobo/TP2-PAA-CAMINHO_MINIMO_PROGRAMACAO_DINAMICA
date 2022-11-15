@@ -4,17 +4,16 @@
 int main(){
 
     int linhas, colunas, opcao, caminhoMin;
-    int numCaminhosMin = 0;
-
     short encerra = false;
 
     Matriz matPesos, matCaminhos;
 
     FILE *fptr;
 
-    cabecalho();
+    cabecalhoMain();
 
     do {
+        int numCaminhosMin = 0;
 
         fptr = abreArquivo();
 
@@ -36,7 +35,7 @@ int main(){
         int caminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
         encontraCaminhoMin(0, 0, matPesos, caminhoMin, 0, &numCaminhosMin);
         printf("Soma Mínima: %d\n", caminhoMin);
-        printf("Quantidade de Caminhos: %d", numCaminhosMin);
+        printf("Quantidade de Caminhos: %d\n", numCaminhosMin);
 
         free(matCaminhos.matDinamica);
         free(matPesos.matDinamica);

@@ -8,7 +8,8 @@
 #define RESET "\x1B[0m"
 
 /** Funções de interface*/
-void cabecalho();
+void cabecalhoMain();
+void cabecalhoGerador();
 int menuOpcoes();
 
 //TODO avaliar se da pra reaproveitar

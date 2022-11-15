@@ -1,9 +1,16 @@
 #include "interfaces.h"
 
 /** Funções de interface*/
-void cabecalho(){
+void cabecalhoMain(){
     printf("\n\n|============================ Universidade Federal De Viçosa - Campus Florestal ============================|\n|================ Trabalho prático 2 - Disciplina CCF 330 - PROJETO E ANÁLISE DE ALGORITMOS ================|\n");
     printf("|======================================== Viagem com custo mínimo ==========================================|\n\n");
+    printf("Professor responsável:\n    Daniel Mendes Barbosa\n\nAlunos responsáveis:\n    Thiago Rocha - 4225    \n    Aroldo Simões - 4250    \n    Joao Lobo - 4693\n\n");
+    printf("|===========================================================================================================|\n\n");
+}
+
+void cabecalhoGerador(){
+    printf("\n\n|============================ Universidade Federal De Viçosa - Campus Florestal ============================|\n|================ Trabalho prático 2 - Disciplina CCF 330 - PROJETO E ANÁLISE DE ALGORITMOS ================|\n");
+    printf("|==================================== Gerador de campos de asteroides ======================================|\n\n");
     printf("Professor responsável:\n    Daniel Mendes Barbosa\n\nAlunos responsáveis:\n    Thiago Rocha - 4225    \n    Aroldo Simões - 4250    \n    Joao Lobo - 4693\n\n");
     printf("|===========================================================================================================|\n\n");
 }
