@@ -6,7 +6,7 @@
 typedef struct{
     int linhas;
     int colunas;
-    int **matrizDinamica;
+    int **matDinamica;
 }Matriz;
 
 enum trueFalse {
@@ -15,6 +15,11 @@ enum trueFalse {
 
 void inicializaMatriz(Matriz *matriz, int linhas, int colunas);
 
+void printMatriz(Matriz matriz);
+
+int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos);
+
 //TODO avaliar se da pra reaproveitar
 void geraFazenda1(int linhas, int colunas, int** matrizVazia, int* vetorFib);
 void geraFazenda2(int linhas, int colunas, int** matrizVazia, int* vetorFib);
+

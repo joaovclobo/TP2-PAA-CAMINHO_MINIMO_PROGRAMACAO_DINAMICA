@@ -7,7 +7,7 @@ int main(){
 
     short encerra = false;
 
-    Matriz matrizPesos, matrizCaminhos;
+    Matriz matPesos, matCaminhos;
 
     FILE *fptr;
 
@@ -20,24 +20,27 @@ int main(){
         /** Incicialização das matrizes e vetores*/
         leituraLinhasColunas(fptr, &linhas, &colunas);
 
-        inicializaMatriz(&matrizCaminhos, linhas, colunas);
+        inicializaMatriz(&matCaminhos, linhas, colunas);
         printf("\nRepresentação dos caminhos:\n");
-        printMatriz(matrizCaminhos);
-        // numeraMatrizZeros(&matrizCaminhos);
+        printMatriz(matCaminhos);
+        // numeraMatrizZeros(&matCaminhos);
 
-        inicializaMatriz(&matrizPesos, linhas, colunas);
-        copiaMatrizFILE(fptr, linhas, colunas, (matrizPesos.matrizDinamica));
+        inicializaMatriz(&matPesos, linhas, colunas);
+        copiaMatrizFILE(fptr, linhas, colunas, (matPesos.matDinamica));
         
         printf("\nRepresentação dos pesos dos caminhos:\n");
-        printMatriz(matrizPesos);
+        printMatriz(matPesos);
         putchar('\n');
 
+        int caminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
+
+        printf("Soma Mínima: %d", caminhoMin);
         // opcao = menuOpcoes();
 
-        // exibicaoOpcoes(opcao, matrizCaminhos, matrizFazenda, linhas, colunas);
+        // exibicaoOpcoes(opcao, matCaminhos, matrizFazenda, linhas, colunas);
 
-        free(matrizCaminhos.matrizDinamica);
-        free(matrizPesos.matrizDinamica);
+        free(matCaminhos.matDinamica);
+        free(matPesos.matDinamica);
 
         printf("\nDeseja encerrar o programa?\n    1) - Sim.\n    0) - Não.\n");
         scanf("%hu", &encerra);

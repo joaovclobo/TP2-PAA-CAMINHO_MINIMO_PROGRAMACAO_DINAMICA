@@ -3,11 +3,32 @@
 void inicializaMatriz(Matriz *matriz, int i, int j){
     matriz->linhas = i;
     matriz->colunas = j;
-    matriz->matrizDinamica = (int **)malloc(i*sizeof(int*));
+    matriz->matDinamica = (int **)malloc(i*sizeof(int*));
 
     for(int k = 0; k < i; k++){
-        matriz->matrizDinamica[k] = (int*)malloc(j*sizeof(int));
+        matriz->matDinamica[k] = (int*)malloc(j*sizeof(int));
     }
+}
+
+void printMatriz(Matriz matriz){
+
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    for(int i = 0; i < matriz.linhas; i++){
+        printf("\n");
+        for(int j = 0; j < matriz.colunas; j++){
+            printf(" %2d ", matriz.matDinamica[i][j]);
+        }
+    }
+    printf("\n");
+
+    for (int i = 0; i < matriz.colunas; i++){
+        printf("----");
+    }
+
+    printf("\n");
 }
 
 //TODO avaliar se da pra reaproveitar
@@ -113,4 +134,40 @@ void geraFazenda2(int linhas, int colunas, int** matrizVazia, int* vetorFib){
         }
         
     }
+}
+
+int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
+    
+    int lin = matPesos.linhas - 1;
+    int col = matPesos.colunas - 1;
+
+    matCaminhos.matDinamica[lin][col] = matPesos.matDinamica[lin][col];
+    printMatriz(matCaminhos);
+    
+
+    for (int i = lin; i >= 0; i--){
+        
+        for (int j = col; j >= 0; j--){
+    
+            if (i < lin){
+                matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
+                printf("IF do i:\nVal i: %d, Val j: %d\n", i, j);
+                printMatriz(matCaminhos);
+                putchar('\n');
+
+            }
+
+
+            if (j < col){
+                matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
+                printf("IF do j:\nVal i: %d, Val j: %d\n", i, j);
+                printMatriz(matCaminhos);
+                putchar('\n');
+                
+            }
+
+        }
+    }
+
+    return matPesos.matDinamica[0][0];    
 }

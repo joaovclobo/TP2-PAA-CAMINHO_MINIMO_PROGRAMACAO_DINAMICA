@@ -8,7 +8,7 @@ FILE* abreArquivo(){
     do{
         printf("\nInsira o nome completo do arquivo com a fazenda (o arquivo deve estar na mesma pasta que está este executavel - Ex. do nome da entrada esperada: fazenda.txt)\n");
         // scanf("%s", nomeArquivo);
-        strcpy(nomeArquivo, "./ArquivosTeste/matrizExemplo3.txt");
+        strcpy(nomeArquivo, "./ArquivosTeste/matrizExemplo1.txt");
         
         fptr = fopen(nomeArquivo, "r");
 

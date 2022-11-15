@@ -1,5 +1,4 @@
 #include "interfaces.h"
-#include "../LeituraDados/leituraArquivos.h"
 
 /** Funções de interface*/
 void cabecalho(){
@@ -21,12 +20,12 @@ int menuOpcoes(){
 }
 
 //TODO avaliar se da pra reaproveitar
-void exibicaoOpcoes(int opcao, Matriz matrizCaminhos, Matriz matrizFazenda, int linhas, int colunas){
+void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int linhas, int colunas){
 
     switch (opcao){
 
         case 1:
-            printMatriz(matrizCaminhos);
+            printMatriz(matCaminhos);
             break;
 
         default:
@@ -44,27 +43,6 @@ void printVetor(int* vetor, int tamVetor){
     putchar('\n');
 }
 
-void printMatriz(Matriz matriz){
-
-    for (int i = 0; i < matriz.colunas; i++){
-        printf("----");
-    }
-
-    for(int i = 0; i < matriz.linhas; i++){
-        printf("\n");
-        for(int j = 0; j < matriz.colunas; j++){
-            printf(" %2d ", matriz.matrizDinamica[i][j]);
-        }
-    }
-    printf("\n");
-
-    for (int i = 0; i < matriz.colunas; i++){
-        printf("----");
-    }
-
-    printf("\n");
-}
-
 void printMatrizDelay(Matriz matriz){
 
     for (int i = 0; i < matriz.colunas; i++){
@@ -74,11 +52,11 @@ void printMatrizDelay(Matriz matriz){
     for(int i = 0; i < matriz.linhas; i++){
         printf("\n");
         for(int j = 0; j < matriz.colunas; j++){
-            if(matriz.matrizDinamica[i][j] == 0){
-                printf("%s %2d %s",RED, matriz.matrizDinamica[i][j],RESET);
+            if(matriz.matDinamica[i][j] == 0){
+                printf("%s %2d %s",RED, matriz.matDinamica[i][j],RESET);
             }
             else{
-                printf("%s %2d %s",GREEN, matriz.matrizDinamica[i][j],RESET);
+                printf("%s %2d %s",GREEN, matriz.matDinamica[i][j],RESET);
             }
             
         }

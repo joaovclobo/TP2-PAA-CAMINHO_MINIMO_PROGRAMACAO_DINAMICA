@@ -12,9 +12,8 @@ void cabecalho();
 int menuOpcoes();
 
 //TODO avaliar se da pra reaproveitar
-void exibicaoOpcoes(int opcao, Matriz matrizCaminhos, Matriz matrizFazenda, int linhas, int colunas); //Apenas a opcao de animação é mostrada em outro momento
+void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int linhas, int colunas); //Apenas a opcao de animação é mostrada em outro momento
 
 /** Funções para mostar as matrizes ou vetores*/
 void printVetor(int* vetor, int tamVetor);
-void printMatriz(Matriz matriz);
 void printMatrizDelay(Matriz matriz);
