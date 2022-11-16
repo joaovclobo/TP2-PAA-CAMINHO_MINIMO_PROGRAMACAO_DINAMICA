@@ -81,31 +81,34 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
         
         for (int j = col; j >= 0; j--){
             
-            if ((matCaminhos.matDinamica[i + 1][j] != 0) && matCaminhos.matDinamica[i + 1][j] < matCaminhos.matDinamica[i][j + 1]){
-                if (i < lin){
+            if (i < lin && j < col){
+
+                if (matCaminhos.matDinamica[i+1][j] == 0 || matCaminhos.matDinamica[i][j+1] == 0 || matCaminhos.matDinamica[i + 1][j] > matCaminhos.matDinamica[i][j + 1]){
+                   
+                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
+                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
+                    printMatriz(matCaminhos); putchar('\n');
+
+                } else {
+                   
+                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
+                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
+                    printMatriz(matCaminhos); putchar('\n');
+
+                }
+
+            } else if (i < lin) {
                 matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
                 printMatriz(matCaminhos); putchar('\n');
-
-                }
-                if (j < col){
-                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
                     
-                }
-
-            } else {
-                if (j < col){
-                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
-                    
-                }
-                if (i < lin){
-                matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
+            } else if (j < col) {
+                matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
                 printMatriz(matCaminhos); putchar('\n');
 
-                }
             }
         }
     }
-
+    
     return matCaminhos.matDinamica[0][0];    
 }
 
@@ -121,18 +124,18 @@ void encontraCaminhoMin(int i, int j, Matriz matCaminhos, Matriz matPesos, int* 
         if (i + 1 < matPesos.linhas && j + 1 < matPesos.colunas){
 
             if (matCaminhos.matDinamica[i+1][j] == matCaminhos.matDinamica[i][j+1]){
-                printf("Igual\n");
+                // printf("Igual\n");
                 encontraCaminhoMin(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
                 encontraCaminhoMin(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
                 return;
 
             } else if (matCaminhos.matDinamica[i+1][j] < matCaminhos.matDinamica[i][j+1]) {
-                printf("Linha\n");
+                // printf("Linha\n");
                 encontraCaminhoMin(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
                 return;
 
             } else {
-                printf("Coluna\n");
+                // printf("Coluna\n");
                 encontraCaminhoMin(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
                 return;
 
@@ -145,7 +148,7 @@ void encontraCaminhoMin(int i, int j, Matriz matCaminhos, Matriz matPesos, int* 
 
         }else if (j + 1 < matPesos.colunas){
             
-            printf("Coluna\n");
+            // printf("Coluna\n");
             encontraCaminhoMin(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
 
         }
