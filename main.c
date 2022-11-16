@@ -33,7 +33,7 @@ int main(){
         putchar('\n');
 
         int caminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
-        encontraCaminhoMin(0, 0, matPesos, caminhoMin, 0, &numCaminhosMin);
+        encontraCaminhoMin(0, 0, matCaminhos, matPesos, &numCaminhosMin);
         printf("Soma Mínima: %d\n", caminhoMin);
         printf("Quantidade de Caminhos: %d\n", numCaminhosMin);
 
