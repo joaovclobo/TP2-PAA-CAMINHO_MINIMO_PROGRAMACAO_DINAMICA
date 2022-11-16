@@ -112,7 +112,8 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
     return matCaminhos.matDinamica[0][0];    
 }
 
-void encontraCaminhoMin(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins){
+//Usa os valores já calculados na matriz de caminhos mínimos para acha-los
+void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins){
     
     if(i == matPesos.linhas - 1 && j == matPesos.colunas - 1){
 
@@ -120,38 +121,101 @@ void encontraCaminhoMin(int i, int j, Matriz matCaminhos, Matriz matPesos, int* 
         return;
 
     } else {
-        // printf("teste\n");
         if (i + 1 < matPesos.linhas && j + 1 < matPesos.colunas){
 
             if (matCaminhos.matDinamica[i+1][j] == matCaminhos.matDinamica[i][j+1]){
-                // printf("Igual\n");
-                encontraCaminhoMin(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
-                encontraCaminhoMin(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
+                
+                encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
+                encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
                 return;
 
             } else if (matCaminhos.matDinamica[i+1][j] < matCaminhos.matDinamica[i][j+1]) {
-                // printf("Linha\n");
-                encontraCaminhoMin(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
+
+                encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
                 return;
 
             } else {
-                // printf("Coluna\n");
-                encontraCaminhoMin(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
+
+                encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
                 return;
 
             }
             
         } else if (i + 1 < matPesos.linhas){
             
-            encontraCaminhoMin(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
+            encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
             return;
 
         }else if (j + 1 < matPesos.colunas){
             
-            // printf("Coluna\n");
-            encontraCaminhoMin(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
+            encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
 
         }
     }
 }
 
+//Testa todas as possibilidades e verifica se o caminho total é igual ao caminho mínimo
+void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
+
+    somaCaminho += caminhos.matDinamica[i][j];
+
+    if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
+
+        if (somaCaminho == caminhoMin){
+
+            *numCaminhosMins += 1;
+        }
+
+        printf("Soma do caminho: %d\n", somaCaminho);
+        somaCaminho = 0;
+        return;
+
+    } else {
+
+        if (i + 1 < caminhos.linhas){
+
+            encontraCaminhoMinFrocaBruta(i + 1, j, caminhos, caminhoMin, somaCaminho, numCaminhosMins);
+        } 
+
+        if (j + 1 < caminhos.colunas){
+
+            encontraCaminhoMinFrocaBruta(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
+        }
+    }
+}
+
+//Caminha para todas as possibilidades e retorna caso a soma seja maior que a soma mínima
+void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
+
+    somaCaminho += caminhos.matDinamica[i][j];
+
+    //Esta condição visa tornar o algorítimo de encontrar o caminho minimo mais eficiente
+    if (somaCaminho > caminhoMin){
+        somaCaminho = 0;
+        return;
+    }
+
+    if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
+
+        if (somaCaminho == caminhoMin){
+
+            *numCaminhosMins += 1;
+        }
+
+        printf("Soma do caminho: %d\n", somaCaminho);
+        somaCaminho = 0;
+        return;
+
+    } else {
+
+        if (i + 1 < caminhos.linhas){
+
+            encontraCaminhoMin(i + 1, j, caminhos, caminhoMin, somaCaminho, numCaminhosMins);
+        } 
+
+        if (j + 1 < caminhos.colunas){
+
+            encontraCaminhoMin(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
+        }
+    }
+}

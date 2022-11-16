@@ -22,6 +22,6 @@ void printMatriz(Matriz matriz);
 void printMatrizDelay(Matriz matriz);
 
 int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos);
-void encontraCaminhoMin(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins);
+void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins);
 
 void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho);
