@@ -1,6 +1,25 @@
 #include "Interfaces/interfaces.h"
 #include <time.h>
 
+/**
+ * Executável principal do sistema. 
+ * 
+ * @authors João Vitor Chagas Lobo; Thiago Cândido; Aroldo Augusto Barbosa Simões
+ * 
+ * @class main.c
+ * 
+ * @headerfile Interface.h
+ * @headerfile time.h
+ * 
+ * @implements: 
+ *      main - Aplicação base;
+ * 
+ * @since 11/2022 xx:xx
+ * 
+ * @version 1.0
+ * 
+ */
+
 int main(){
 
     int linhas, colunas, opcao, caminhoMin;

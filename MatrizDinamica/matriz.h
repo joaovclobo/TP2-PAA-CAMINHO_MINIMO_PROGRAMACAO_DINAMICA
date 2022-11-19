@@ -6,6 +6,19 @@
 #define RED "\x1B[31m"
 #define RESET "\x1B[0m"
 
+/**
+ * @brief HeraderFile 
+ * 
+ * @authors João Vitor Chagas Lobo; Thiago Cândido; Aroldo Augusto Barbosa Simões
+ * 
+ * @implements struct Matriz: Matriz dinâmica
+ * 
+ * @since 11/2022 xx:xx
+ * 
+ * @version 1.0
+ * 
+ */
+
 typedef struct{
     int linhas;
     int colunas;

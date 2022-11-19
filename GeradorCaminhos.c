@@ -1,5 +1,23 @@
 #include "Interfaces/interfaces.h"
 
+/**
+ * Gerador de caminhos em arquivos de texto.
+ * 
+ * @authors @João Vitor Chagas Lobo, @Thiago Cândido, @Aroldo Augusto Barbosa Simões
+ * 
+ * @class GeradorCaminhos.c
+ * 
+ * @headerfile Interface.h
+ * 
+ * @implements: 
+ *      main - interação com usuário para criação do arquivo de caminho;
+ * 
+ * @since 11/2022 xx:xx 
+ * 
+ * @version 1.0
+ * 
+ */
+
 int main(){
     
     int linhas, colunas, maxCaminho;

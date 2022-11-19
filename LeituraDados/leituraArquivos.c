@@ -1,5 +1,24 @@
 #include "leituraArquivos.h"
 
+/**
+ * Leitura de Arquivos de texto. 
+ * 
+ * @authors João Vitor Chagas Lobo; Thiago Cândido; Aroldo Augusto Barbosa Simões
+ * 
+ * @class leituraArquivos.c
+ * 
+ * @headerfile leituraArquivos.h
+ * 
+ * @implements: 
+ *      leituraLinhasColunas - ;
+ *      copiaMatrizFILE - .
+ * 
+ * @since 11/2022 xx:xx
+ * 
+ * @version 1.0
+ * 
+ */
+
 FILE* abreArquivo(){
 
     char nomeArquivo[MAX_BUFFER];
