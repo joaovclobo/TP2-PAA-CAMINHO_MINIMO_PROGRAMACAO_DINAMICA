@@ -7,7 +7,7 @@
 /**
  * @brief HeraderFile 
  * 
- * @authors João Vitor Chagas Lobo; Thiago Cândido; Aroldo Augusto Barbosa Simões
+ * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
  * @since 11/2022 xx:xx
  * 

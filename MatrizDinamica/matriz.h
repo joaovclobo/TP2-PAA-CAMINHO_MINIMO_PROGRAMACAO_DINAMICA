@@ -9,7 +9,7 @@
 /**
  * @brief HeraderFile 
  * 
- * @authors João Vitor Chagas Lobo; Thiago Cândido; Aroldo Augusto Barbosa Simões
+ * @authors @João Vitor @Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
  * @implements struct Matriz: Matriz dinâmica
  * 

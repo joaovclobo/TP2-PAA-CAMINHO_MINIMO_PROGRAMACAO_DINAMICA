@@ -3,7 +3,7 @@
 /**
  * Implementação do header 'matriz.h' e funcionalidades relacionadas a matriz
  * 
- * @authors João Vitor Chagas Lobo; Thiago Cândido; Aroldo Augusto Barbosa Simões
+ * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
  * @class matriz.c
  * 
@@ -38,7 +38,7 @@ void inicializaMatriz(Matriz *matriz, int i, int j){
     }
 }
 
- /**Método printMatriz -  
+/**Método printMatriz -  
  * @author x
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
  * @since 11/2022 xx:xx
@@ -220,6 +220,7 @@ void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz mat
 
         }
     }
+
 }
 
 /**Método encontraCaminhoMinFrocaBruta -  
@@ -261,6 +262,7 @@ void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin,
             encontraCaminhoMinFrocaBruta(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
         }
     }
+
 }
 
 /**Método encontraCaminhoMinBacktracking -  

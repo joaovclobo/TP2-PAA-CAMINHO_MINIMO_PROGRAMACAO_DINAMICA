@@ -3,7 +3,7 @@
 /**
  * Implementação do header 'interfaces.h' e funcionalidades relacionadas a interface visível para o Usuário.
  * 
- * @authors João Vitor Chagas Lobo; Thiago Cândido; Aroldo Augusto Barbosa Simões
+ * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
  * @class interfaces.c
  * 
@@ -94,4 +94,21 @@ void printVetor(int* vetor, int tamVetor){
     }
 
     putchar('\n');
+}
+
+/** Funções para mostar as matrizes ou vetores*/
+
+/**Método opcoesEncontraCaminho -  Função que mostra opções para o usuário escolher a função para escolher o caminho;
+ * @author @Aroldo Augusto Barbosa Simões
+ * @since 19/11/2022 21:00
+ */
+
+void opcoesEncontraCaminho(){
+    printf("|===========================================================================================================|\n\n");
+    printf("Escolha uma das seguintes opções para encontrar o caminhos: \n");
+    printf("1 - encontraCaminhoMinMemorization\n"); //TODO: MUDAR NOMEAÇÃO
+    printf("2 - encontraCaminhoMinFrocaBruta\n");
+    printf("3 - encontraCaminhoMinBacktracking\n");
+    printf("\n|===========================================================================================================|\n\n");
+
 }
