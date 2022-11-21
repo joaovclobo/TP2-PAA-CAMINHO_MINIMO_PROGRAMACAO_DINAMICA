@@ -71,12 +71,12 @@ int main(){
                 
                 case 2:
                     begin = clock(); 
-                    encontraCaminhoMinFrocaBruta();
+                    encontraCaminhoMinFrocaBruta(0, 0, matCaminhos, matPesos, &numCaminhosMin);
                     break;
 
                 case 3:
                     begin = clock(); 
-                    encontraCaminhoMinBacktracking();
+                    encontraCaminhoMinBacktracking(0, 0, matCaminhos, matPesos, &numCaminhosMin);
                     break;
 
                 default:
@@ -91,12 +91,12 @@ int main(){
         // dividindo a diferença por CLOCKS_PER_SEC para converter em segundos
         time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
  
-        printf("\nTEMPO GASTO PARA EXECUÇÃO: %f segundos\n", time_spent);
-
         int somaCaminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
 
         printf("Soma Mínima: %d\n", somaCaminhoMin);
         printf("Quantidade de Caminhos: %d\n", numCaminhosMin);
+
+        printf("\nTEMPO GASTO PARA EXECUÇÃO: %f segundos\n", time_spent);
 
         free(matCaminhos.matDinamica);
         free(matPesos.matDinamica);
