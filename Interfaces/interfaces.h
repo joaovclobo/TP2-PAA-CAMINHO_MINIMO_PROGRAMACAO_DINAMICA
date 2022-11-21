@@ -7,6 +7,17 @@
 #define BLUE "\x1B[34m"
 #define RESET "\x1B[0m"
 
+/**
+ * @brief HeraderFile 
+ * 
+ * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
+ * 
+ * @since 11/2022 xx:xx
+ * 
+ * @version 1.0
+ * 
+ */
+
 /** Funções de interface*/
 void cabecalhoMain();
 void cabecalhoGerador();
@@ -17,3 +28,5 @@ void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int lin
 
 /** Funções para mostar as matrizes ou vetores*/
 void printVetor(int* vetor, int tamVetor);
+
+void opcoesEncontraCaminho(); //Opções para o usuário escolher a função para escolher o caminho;

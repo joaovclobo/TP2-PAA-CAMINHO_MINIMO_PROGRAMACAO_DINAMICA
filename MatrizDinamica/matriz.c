@@ -1,5 +1,33 @@
 #include "matriz.h"
 
+/**
+ * Implementação do header 'matriz.h' e funcionalidades relacionadas a matriz
+ * 
+ * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
+ * 
+ * @class matriz.c
+ * 
+ * @headerfile matriz.h
+ * 
+ * @implements: 
+ *      inicializaMatriz - Inicializa matriz vazia;
+ *      ...
+ * 
+ * @version 1.0
+ * 
+ * @since 11/2022 xx:xx 
+ * 
+ */
+
+
+ /**Método inicializaMatriz -  
+ * @author x
+ * @param Matriz *matriz - Ponteiro para matriz dinâmica.
+ * @param int i - Valor que representa quantidade de LINHAS da matriz.
+ * @param int j - Valor que representa quantidade de COLUNAS da matriz.
+ * @since 11/2022 xx:xx
+ */
+
 void inicializaMatriz(Matriz *matriz, int i, int j){
     matriz->linhas = i;
     matriz->colunas = j;
@@ -9,6 +37,12 @@ void inicializaMatriz(Matriz *matriz, int i, int j){
         matriz->matDinamica[k] = (int*)malloc(j*sizeof(int));
     }
 }
+
+/**Método printMatriz -  
+ * @author x
+ * @param Matriz *matriz - Ponteiro para matriz dinâmica.
+ * @since 11/2022 xx:xx
+ */
 
 void printMatriz(Matriz matriz){
 
@@ -30,6 +64,12 @@ void printMatriz(Matriz matriz){
 
     printf("\n");
 }
+
+/**Método printMatrizDelay -  
+ * @author x
+ * @param Matriz *matriz - Ponteiro para matriz dinâmica.
+ * @since 11/2022 xx:xx
+ */
 
 void printMatrizDelay(Matriz matriz){
 
@@ -59,6 +99,16 @@ void printMatrizDelay(Matriz matriz){
 
 }
 
+/**Método geraCaminhos -  
+ * @author x
+ * @param Matriz *matriz - Ponteiro para matriz dinâmica.
+ * @param int linhas - Valor que representa quantidade de LINHAS da matriz.
+ * @param int colunas - Valor que representa quantidade de COLUNAS da matriz.
+ * @param int matrizVazia -
+ * @param int maxCaminho -
+ * @since 11/2022 xx:xx
+ */
+
 void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho){
 
     for (int i = 0; i < linhas; i++){
@@ -67,6 +117,14 @@ void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho){
         }
     }
 }
+
+/**Método calculaCaminhoMin -  
+ * @author x
+ * @param Matriz matPesos - 
+ * @param Matriz matCaminhos - 
+ * @return int
+ * @since 11/2022 xx:xx
+ */
 
 int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
     
@@ -112,6 +170,16 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
     return matCaminhos.matDinamica[0][0];    
 }
 
+/**Método encontraCaminhoMinMemorization -  
+ * @author x
+ * @param Matriz matPesos - 
+ * @param Matriz matCaminhos - 
+ * @param int i - Valor que representa quantidade de LINHAS da matriz.
+ * @param int j - Valor que representa quantidade de COLUNAS da matriz.
+ * @param int* numCaminhosMins - 
+ * @since 11/2022 xx:xx
+ */
+
 //Usa os valores já calculados na matriz de caminhos mínimos para acha-los
 void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins){
     
@@ -152,7 +220,19 @@ void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz mat
 
         }
     }
+
 }
+
+/**Método encontraCaminhoMinFrocaBruta -  
+ * @author x
+ * @param Matriz caminhos - 
+ * @param int i - Valor que representa quantidade de LINHAS da matriz.
+ * @param int j - Valor que representa quantidade de COLUNAS da matriz.
+ * @param int* numCaminhosMins - 
+ * @param int caminhoMin - 
+ * @param int somaCaminho - 
+ * @since 11/2022 xx:xx
+ */
 
 //Testa todas as possibilidades e verifica se o caminho total é igual ao caminho mínimo
 void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
@@ -182,7 +262,19 @@ void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin,
             encontraCaminhoMinFrocaBruta(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
         }
     }
+
 }
+
+/**Método encontraCaminhoMinBacktracking -  
+ * @author x
+ * @param Matriz caminhos - 
+ * @param int i - Valor que representa quantidade de LINHAS da matriz.
+ * @param int j - Valor que representa quantidade de COLUNAS da matriz.
+ * @param int* numCaminhosMins - 
+ * @param int caminhoMin - 
+ * @param int somaCaminho - 
+ * @since 11/2022 xx:xx
+ */
 
 //Caminha para todas as possibilidades e retorna caso a soma seja maior que a soma mínima
 void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
@@ -210,12 +302,13 @@ void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMi
 
         if (i + 1 < caminhos.linhas){
 
-            encontraCaminhoMin(i + 1, j, caminhos, caminhoMin, somaCaminho, numCaminhosMins);
+            encontraCaminhoMinBacktracking(i + 1, j, caminhos, caminhoMin, somaCaminho, numCaminhosMins);
         } 
 
         if (j + 1 < caminhos.colunas){
 
-            encontraCaminhoMin(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
+            encontraCaminhoMinBacktracking(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
         }
     }
+
 }
