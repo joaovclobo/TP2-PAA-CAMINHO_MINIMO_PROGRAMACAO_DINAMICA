@@ -32,6 +32,7 @@ int main(){
     cabecalhoMain();
 
     do {
+        
         int numCaminhosMin = 0;
         int escolhaUsuario = 0;
         
@@ -48,7 +49,6 @@ int main(){
         inicializaMatriz(&matCaminhos, linhas, colunas);
         printf("\nRepresentação dos caminhos:\n");
         printMatriz(matCaminhos);
-        // numeraMatrizZeros(&matCaminhos);
 
         inicializaMatriz(&matPesos, linhas, colunas);
         copiaMatrizFILE(fptr, linhas, colunas, (matPesos.matDinamica));
@@ -59,9 +59,10 @@ int main(){
 
         opcoesEncontraCaminho();
         scanf("%d", &escolhaUsuario);
+        
+        int somaCaminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
 
-        do
-        {
+        do {
             
             switch (escolhaUsuario){
                 case 1:
@@ -71,18 +72,19 @@ int main(){
                 
                 case 2:
                     begin = clock(); 
-                    encontraCaminhoMinFrocaBruta(0, 0, matCaminhos, matPesos, &numCaminhosMin);
+                    encontraCaminhoMinFrocaBruta(0, 0, matPesos, somaCaminhoMin, 0, &numCaminhosMin);
                     break;
 
                 case 3:
                     begin = clock(); 
-                    encontraCaminhoMinBacktracking(0, 0, matCaminhos, matPesos, &numCaminhosMin);
+                    encontraCaminhoMinBacktracking(0, 0, matPesos, somaCaminhoMin, 0, &numCaminhosMin);
                     break;
 
                 default:
                     printf("Entre com uma opcao valida! \n");
                     break;
             }
+
         } while (escolhaUsuario <= 0 || escolhaUsuario > 3);
         
         end = clock();
@@ -91,12 +93,11 @@ int main(){
         // dividindo a diferença por CLOCKS_PER_SEC para converter em segundos
         time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
  
-        int somaCaminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
 
         printf("Soma Mínima: %d\n", somaCaminhoMin);
         printf("Quantidade de Caminhos: %d\n", numCaminhosMin);
 
-        printf("\nTEMPO GASTO PARA EXECUÇÃO: %f segundos\n", time_spent);
+        printf("\nTempo gasto para a execução: %f segundos\n", time_spent);
 
         free(matCaminhos.matDinamica);
         free(matPesos.matDinamica);
