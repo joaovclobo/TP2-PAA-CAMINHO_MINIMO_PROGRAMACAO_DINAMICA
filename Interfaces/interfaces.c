@@ -34,7 +34,7 @@ void cabecalhoMain(){
 }
 
 /**Método cabecalhoGerador -  
- * @author x
+ * @author @João Vitor Chagas Lobo
  * @since 11/2022 xx:xx
  */
 
@@ -50,6 +50,8 @@ void cabecalhoGerador(){
  * @return int
  * @since 11/2022 xx:xx
  */
+
+//TODO avaliar se da pra reaproveitar
 int menuOpcoes(){
 
     int opcao = 1;
@@ -87,6 +89,7 @@ void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int lin
  * @since 11/2022 xx:xx
  */
 
+//TODO avaliar se da pra reaproveitar
 void printVetor(int* vetor, int tamVetor){
     for (int i = 0; i < tamVetor; i++){
         printf("%d ", vetor[i]);
@@ -100,15 +103,15 @@ void printVetor(int* vetor, int tamVetor){
 
 /**Método opcoesEncontraCaminho -  Função que mostra opções para o usuário escolher a função para escolher o caminho;
  * @author @Aroldo Augusto Barbosa Simões
- * @since 19/11/2022 21:00
+ * @author @João Vitor Chagas Lobo
+ * @since 21/11/2022 19:00
  */
 
 void opcoesEncontraCaminho(){
-    printf("|===========================================================================================================|\n\n");
-    printf("Escolha uma das seguintes opções para encontrar o caminhos: \n");
-    printf("1 - encontraCaminhoMinMemorization\n"); //TODO: MUDAR NOMEAÇÃO
-    printf("2 - encontraCaminhoMinFrocaBruta\n");
-    printf("3 - encontraCaminhoMinBacktracking\n");
-    printf("\n|===========================================================================================================|\n\n");
+
+    printf("\nDEscolha uma das seguintes opções para encontrar o caminhos:\n\n\
+    1) - Utilizando uma função que usa \"Memorization\".\n\
+    2) - Utilizando uma função que usa Backtracking.\n\
+    3) - Utilizando uma função que usa Froça Bruta.\n");
 
 }

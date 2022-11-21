@@ -100,7 +100,7 @@ void printMatrizDelay(Matriz matriz){
 }
 
 /**Método geraCaminhos -  
- * @author x
+ * @author @João Vitor Chagas Lobo
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
  * @param int linhas - Valor que representa quantidade de LINHAS da matriz.
  * @param int colunas - Valor que representa quantidade de COLUNAS da matriz.
@@ -119,7 +119,7 @@ void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho){
 }
 
 /**Método calculaCaminhoMin -  
- * @author x
+ * @author @João Vitor Chagas Lobo
  * @param Matriz matPesos - 
  * @param Matriz matCaminhos - 
  * @return int
@@ -171,7 +171,7 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
 }
 
 /**Método encontraCaminhoMinMemorization -  
- * @author x
+ * @author @João Vitor Chagas Lobo
  * @param Matriz matPesos - 
  * @param Matriz matCaminhos - 
  * @param int i - Valor que representa quantidade de LINHAS da matriz.
@@ -224,7 +224,7 @@ void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz mat
 }
 
 /**Método encontraCaminhoMinFrocaBruta -  
- * @author x
+ * @author @João Vitor Chagas Lobo
  * @param Matriz caminhos - 
  * @param int i - Valor que representa quantidade de LINHAS da matriz.
  * @param int j - Valor que representa quantidade de COLUNAS da matriz.
@@ -246,7 +246,6 @@ void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin,
             *numCaminhosMins += 1;
         }
 
-        printf("Soma do caminho: %d\n", somaCaminho);
         somaCaminho = 0;
         return;
 
@@ -266,7 +265,7 @@ void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin,
 }
 
 /**Método encontraCaminhoMinBacktracking -  
- * @author x
+ * @author @João Vitor Chagas Lobo
  * @param Matriz caminhos - 
  * @param int i - Valor que representa quantidade de LINHAS da matriz.
  * @param int j - Valor que representa quantidade de COLUNAS da matriz.
@@ -294,7 +293,6 @@ void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMi
             *numCaminhosMins += 1;
         }
 
-        printf("Soma do caminho: %d\n", somaCaminho);
         somaCaminho = 0;
         return;
 

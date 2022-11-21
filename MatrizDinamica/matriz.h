@@ -36,5 +36,7 @@ void printMatrizDelay(Matriz matriz);
 
 int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos);
 void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins);
+void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins);
+void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins);
 
 void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho);
