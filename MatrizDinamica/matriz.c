@@ -314,11 +314,13 @@ void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz mat
 void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
 
     somaCaminho += caminhos.matDinamica[i][j];
+        printf("Soma caminho: %d\n", somaCaminho);
+
 
     if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
 
         if (somaCaminho == caminhoMin){
-            
+
             *numCaminhosMins += 1;
         }
 
@@ -393,9 +395,10 @@ void encontraCaminhoDivK(int i, int j, Matriz caminhos, int k, int somaCaminho, 
     if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
 
         if (somaCaminho % k == 0){
-            
             *numCaminhosDivK += 1;
         }
+
+        printf("Soma caminho: %d\n", somaCaminho);
 
         somaCaminho = 0;
         return;
@@ -404,12 +407,12 @@ void encontraCaminhoDivK(int i, int j, Matriz caminhos, int k, int somaCaminho, 
 
         if (i + 1 < caminhos.linhas){
 
-            encontraCaminhoMinFrocaBruta(i + 1, j, caminhos, k, somaCaminho, numCaminhosDivK);
+            encontraCaminhoDivK(i + 1, j, caminhos, k, somaCaminho, numCaminhosDivK);
         } 
 
         if (j + 1 < caminhos.colunas){
 
-            encontraCaminhoMinFrocaBruta(i, j + 1, caminhos, k, somaCaminho, numCaminhosDivK);    
+            encontraCaminhoDivK(i, j + 1, caminhos, k, somaCaminho, numCaminhosDivK);    
         }
     }
 }

@@ -22,7 +22,7 @@
 
 int main(){
 
-    int linhas, colunas, opcao, caminhoMin;
+    int linhas, colunas, opcao, caminhoMin, k;
     short encerra = false;
 
     Matriz matPesos, matCaminhos, matImprime;
@@ -34,6 +34,7 @@ int main(){
     do {
         
         int numCaminhosMin = 0;
+        int numCaminhoDivk = 0;
         int escolhaUsuario = 0;
         
         //Variáveis usadas no cálculo de tempo de execução:
@@ -63,19 +64,25 @@ int main(){
         scanf("%d", &escolhaUsuario);
         
         int somaCaminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
+        printMatriz(matCaminhos);
 
         do {
             
             switch (escolhaUsuario){
                 case 1:
                     begin = clock(); 
-                    // encontraCaminhoMinMemorization(0, 0, matCaminhos, matPesos, &numCaminhosMin);
-                    encontraCaminhoMinImprime(0, 0, matCaminhos, matPesos, matImprime, &numCaminhosMin);
+                    encontraCaminhoMinMemorization(0, 0, matCaminhos, matPesos, &numCaminhosMin);
+                    // encontraCaminhoMinImprime(0, 0, matCaminhos, matPesos, matImprime, &numCaminhosMin);
                     break;
                 
                 case 2:
                     begin = clock(); 
-                    encontraCaminhoMinFrocaBruta(0, 0, matPesos, somaCaminhoMin, 0, &numCaminhosMin);
+                    printf("Digite o valor de k: ");
+                    scanf("%d", &k);
+                    encontraCaminhoDivK(0, 0, matPesos, k, 0, &numCaminhoDivk);
+                    // encontraCaminhoMinFrocaBruta(0, 0, matPesos, somaCaminhoMin, 0, &numCaminhosMin);
+                    printf("Quantidade de Caminhos divisiveis por k (%d): %d\n", k, numCaminhoDivk);
+
                     break;
 
                 case 3:
@@ -99,7 +106,7 @@ int main(){
 
         printf("Soma Mínima: %d\n", somaCaminhoMin);
         printf("Quantidade de Caminhos: %d\n", numCaminhosMin);
-
+        
         printf("\nTempo gasto para a execução: %f segundos\n", time_spent);
 
         free(matCaminhos.matDinamica);
