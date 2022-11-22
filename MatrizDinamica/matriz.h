@@ -34,11 +34,11 @@ void inicializaMatriz(Matriz *matriz, int linhas, int colunas);
 void printMatriz(Matriz matriz);
 void printMatrizDelay(Matriz matriz);
 
-int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos);
-void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins);
+int calculaCaminhoMin(Matriz matViagem, Matriz matCaminhosMin);
+void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhosMin, Matriz matViagem, int* numCaminhosMins);
 void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins);
 void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins);
-void encontraCaminhoMinImprime(int i, int j, Matriz matCaminhos, Matriz matPesos, Matriz matPrint, int* numCaminhosMins);
+void encontraCaminhoMinImprime(int i, int j, Matriz matCaminhosMin, Matriz matViagem, Matriz matPrint, int* numCaminhosMins);
 void encontraCaminhoDivK(int i, int j, Matriz caminhos, int k, int somaCaminho, int* numCaminhosDivK);
 
 void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho);

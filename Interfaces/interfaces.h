@@ -21,12 +21,4 @@
 /** Funções de interface*/
 void cabecalhoMain();
 void cabecalhoGerador();
-int menuOpcoes();
-
-//TODO avaliar se da pra reaproveitar
-void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int linhas, int colunas); //Apenas a opcao de animação é mostrada em outro momento
-
-/** Funções para mostar as matrizes ou vetores*/
-void printVetor(int* vetor, int tamVetor);
-
-void opcoesEncontraCaminho(); //Opções para o usuário escolher a função para escolher o caminho;
+int opcoesEncontraCaminho(); //Opções para o usuário escolher a função para escolher o caminho;
