@@ -21,7 +21,7 @@
 
 /** Funções de interface*/
 
- /**Método cabecalhoMain -  
+ /**FunçãocabecalhoMain -  
  * @author x
  * @since 11/2022 xx:xx
  */
@@ -33,7 +33,7 @@ void cabecalhoMain(){
     printf("|===========================================================================================================|\n\n");
 }
 
-/**Método cabecalhoGerador -  
+/**Função cabecalhoGerador -  
  * @author @João Vitor Chagas Lobo
  * @since 11/2022 xx:xx
  */
@@ -45,7 +45,7 @@ void cabecalhoGerador(){
     printf("|===========================================================================================================|\n\n");
 }
 
-/**Método menuOpcoes -  
+/**Função menuOpcoes -  
  * @author x
  * @return int
  * @since 11/2022 xx:xx
@@ -63,7 +63,7 @@ int menuOpcoes(){
     return opcao;
 }
 
-/**Método exibicaoOpcoes -  
+/**Função exibicaoOpcoes -  
  * @author x
  * @since 11/2022 xx:xx
  */
@@ -84,7 +84,7 @@ void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int lin
 
 /** Funções para mostar as matrizes ou vetores*/
 
-/**Método printVetor -  Função para mostar as matrizes ou vetores
+/**Função printVetor -  Função para mostar as matrizes ou vetores
  * @author x
  * @since 11/2022 xx:xx
  */
@@ -101,7 +101,7 @@ void printVetor(int* vetor, int tamVetor){
 
 /** Funções para mostar as matrizes ou vetores*/
 
-/**Método opcoesEncontraCaminho -  Função que mostra opções para o usuário escolher a função para escolher o caminho;
+/**Função opcoesEncontraCaminho -  Função que mostra opções para o usuário escolher a função para escolher o caminho;
  * @author @Aroldo Augusto Barbosa Simões
  * @author @João Vitor Chagas Lobo
  * @since 21/11/2022 19:00

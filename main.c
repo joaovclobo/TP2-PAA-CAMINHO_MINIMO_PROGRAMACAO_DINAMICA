@@ -25,7 +25,7 @@ int main(){
     int linhas, colunas, opcao, caminhoMin;
     short encerra = false;
 
-    Matriz matPesos, matCaminhos;
+    Matriz matPesos, matCaminhos, matImprime;
 
     FILE *fptr;
 
@@ -47,6 +47,8 @@ int main(){
         leituraLinhasColunas(fptr, &linhas, &colunas);
 
         inicializaMatriz(&matCaminhos, linhas, colunas);
+        inicializaMatriz(&matImprime, linhas, colunas);
+
         printf("\nRepresentação dos caminhos:\n");
         printMatriz(matCaminhos);
 
@@ -67,7 +69,8 @@ int main(){
             switch (escolhaUsuario){
                 case 1:
                     begin = clock(); 
-                    encontraCaminhoMinMemorization(0, 0, matCaminhos, matPesos, &numCaminhosMin);
+                    // encontraCaminhoMinMemorization(0, 0, matCaminhos, matPesos, &numCaminhosMin);
+                    encontraCaminhoMinImprime(0, 0, matCaminhos, matPesos, matImprime, &numCaminhosMin);
                     break;
                 
                 case 2:
