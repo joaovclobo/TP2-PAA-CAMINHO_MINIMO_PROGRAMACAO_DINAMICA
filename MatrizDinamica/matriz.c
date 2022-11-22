@@ -38,6 +38,17 @@ void inicializaMatriz(Matriz *matriz, int i, int j){
     }
 }
 
+
+void numeraMatrizZeros(Matriz *matriz){
+    int count = 0;
+    for(int i = 0; i < matriz->linhas; i++){
+        for(int j = 0; j < matriz->colunas; j++){
+            if(j!=0)
+                matriz->matDinamica[i][j] = 0;
+        }
+    }
+}
+
 /**Método printMatriz -  
  * @author x
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
@@ -95,8 +106,32 @@ void printMatrizDelay(Matriz matriz){
     }
 
     printf("\n");
-    usleep(400000);
+    //usleep(400000);
 
+}
+
+void printCaminhoEmoji(int **caminho, int linhas, int colunas){
+    char *caminhoEmoji[linhas][colunas];
+
+    for(int i = 0; i < linhas; i++){
+        for(int j = 0; j < colunas; j++){
+            if(caminho[i][j] != 0){
+                caminhoEmoji[i][j] = "\U0001F7E9";
+            }
+            else{
+                caminhoEmoji[i][j] = "\U0001F7EB";
+            }
+        }
+    }
+
+    printf("Caminho emojis:\n");
+    for(int i = 0; i < linhas; i++){
+        printf("\n");
+        for(int j = 0; j < colunas; j++){
+            printf("%s", caminhoEmoji[i][j]);
+        }
+    }
+    printf("\n\n");
 }
 
 /**Método geraCaminhos -  
@@ -132,7 +167,7 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
     int col = matPesos.colunas - 1;
 
     matCaminhos.matDinamica[lin][col] = matPesos.matDinamica[lin][col];
-    printMatriz(matCaminhos);
+    //printMatriz(matCaminhos);
     
 
     for (int i = lin; i >= 0; i--){
@@ -145,24 +180,20 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
                    
                     matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
                     matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
-                    printMatriz(matCaminhos); putchar('\n');
-
+                    //printMatriz(matCaminhos); putchar('\n');
                 } else {
                    
                     matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
                     matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
-                    printMatriz(matCaminhos); putchar('\n');
-
+                    //printMatriz(matCaminhos); putchar('\n');
                 }
 
             } else if (i < lin) {
                 matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
-                printMatriz(matCaminhos); putchar('\n');
-                    
+                //printMatriz(matCaminhos); putchar('\n');
             } else if (j < col) {
                 matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
-                printMatriz(matCaminhos); putchar('\n');
-
+                //printMatriz(matCaminhos); putchar('\n');
             }
         }
     }
@@ -181,16 +212,65 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
  */
 
 //Usa os valores já calculados na matriz de caminhos mínimos para acha-los
-void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins){
-    
-    if(i == matPesos.linhas - 1 && j == matPesos.colunas - 1){
 
+void encontraCaminhoMinImprime(int i, int j, Matriz matCaminhos, Matriz matPesos, Matriz matPrint, int* numCaminhosMins){
+    
+    matPrint.matDinamica[i][j] = 1;
+
+    if(i == matPesos.linhas - 1 && j == matPesos.colunas - 1){
+        //printMatriz(matPrint);
+        printCaminhoEmoji(matPrint.matDinamica, matPrint.linhas, matPrint.colunas);
+        //numeraMatrizZeros(&matPrint);
         *numCaminhosMins += 1;
         return;
 
     } else {
         if (i + 1 < matPesos.linhas && j + 1 < matPesos.colunas){
+            
+            if (matCaminhos.matDinamica[i+1][j] == matCaminhos.matDinamica[i][j+1]){
+                
+                encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, matPrint, numCaminhosMins);
+                encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, matPrint, numCaminhosMins);
+                //return;
 
+            } else if (matCaminhos.matDinamica[i+1][j] < matCaminhos.matDinamica[i][j+1]) {
+
+                encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, matPrint, numCaminhosMins);
+                //return;
+
+            } else {
+
+                encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, matPrint, numCaminhosMins);
+                //return;
+
+            }
+            
+        } else if (i + 1 < matPesos.linhas){
+            
+            encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, matPrint, numCaminhosMins);
+            //return;
+
+        }else if (j + 1 < matPesos.colunas){
+            
+            encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, matPrint, numCaminhosMins);
+
+        }
+    }
+    matPrint.matDinamica[i][j] = 0;
+
+
+
+}
+void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins){
+    
+
+    if(i == matPesos.linhas - 1 && j == matPesos.colunas - 1){
+        *numCaminhosMins += 1;
+        return;
+
+    } else {
+        if (i + 1 < matPesos.linhas && j + 1 < matPesos.colunas){
+            
             if (matCaminhos.matDinamica[i+1][j] == matCaminhos.matDinamica[i][j+1]){
                 
                 encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
@@ -221,6 +301,7 @@ void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz mat
         }
     }
 
+
 }
 
 /**Método encontraCaminhoMinFrocaBruta -  
@@ -242,7 +323,7 @@ void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin,
     if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
 
         if (somaCaminho == caminhoMin){
-
+            
             *numCaminhosMins += 1;
         }
 
