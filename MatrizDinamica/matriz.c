@@ -15,19 +15,18 @@
  * 
  * @version 1.0
  * 
- * @since 11/2022 xx:xx 
+ * @since 11/2022 14:00 
  * 
  */
 
 
- /**Método inicializaMatriz -  
- * @author x
+ /**FunçãoinicializaMatriz -  
+ * @author @Thiago Cândido
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
  * @param int i - Valor que representa quantidade de LINHAS da matriz.
  * @param int j - Valor que representa quantidade de COLUNAS da matriz.
- * @since 11/2022 xx:xx
+ * @since 10/2022 14:00
  */
-
 void inicializaMatriz(Matriz *matriz, int i, int j){
     matriz->linhas = i;
     matriz->colunas = j;
@@ -38,12 +37,11 @@ void inicializaMatriz(Matriz *matriz, int i, int j){
     }
 }
 
-/**Método printMatriz -  
- * @author x
+/**Função printMatriz -  
+ * @author @Thiago Cândido
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
- * @since 11/2022 xx:xx
+ * @since 10/2022 14:00
  */
-
 void printMatriz(Matriz matriz){
 
     for (int i = 0; i < matriz.colunas; i++){
@@ -65,12 +63,11 @@ void printMatriz(Matriz matriz){
     printf("\n");
 }
 
-/**Método printMatrizDelay -  
- * @author x
+/**Função printMatrizDelay -  
+ * @author @João Vitor Chagas Lobo
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
- * @since 11/2022 xx:xx
+ * @since 10/2022 14:00
  */
-
 void printMatrizDelay(Matriz matriz){
 
     for (int i = 0; i < matriz.colunas; i++){
@@ -99,16 +96,44 @@ void printMatrizDelay(Matriz matriz){
 
 }
 
-/**Método geraCaminhos -  
+/**Função printMatriz -  
+ * @author @Thiago Cândido
+ * @param Matriz *matriz - Ponteiro para matriz dinâmica.
+ * @since 11/2022 20:00
+ */
+void printCaminhoEmoji(int **caminho, int linhas, int colunas){
+    char *caminhoEmoji[linhas][colunas];
+
+    for(int i = 0; i < linhas; i++){
+        for(int j = 0; j < colunas; j++){
+            if(caminho[i][j] != 0){
+                caminhoEmoji[i][j] = "\U0001F7E9";
+            }
+            else{
+                caminhoEmoji[i][j] = "\U0001F7EB";
+            }
+        }
+    }
+
+    printf("Caminho emojis:\n");
+    for(int i = 0; i < linhas; i++){
+        printf("\n");
+        for(int j = 0; j < colunas; j++){
+            printf("%s", caminhoEmoji[i][j]);
+        }
+    }
+    printf("\n\n");
+}
+
+/**Função geraCaminhos -  
  * @author @João Vitor Chagas Lobo
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
  * @param int linhas - Valor que representa quantidade de LINHAS da matriz.
  * @param int colunas - Valor que representa quantidade de COLUNAS da matriz.
- * @param int matrizVazia -
- * @param int maxCaminho -
- * @since 11/2022 xx:xx
+ * @param int matrizVazia - 
+ * @param int maxCaminho - 
+ * @since 11/2022 20:00
  */
-
 void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho){
 
     for (int i = 0; i < linhas; i++){
@@ -118,22 +143,19 @@ void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho){
     }
 }
 
-/**Método calculaCaminhoMin -  
+/**Função calculaCaminhoMin -  
  * @author @João Vitor Chagas Lobo
- * @param Matriz matPesos - 
- * @param Matriz matCaminhos - 
+ * @param Matriz matViagem - 
+ * @param Matriz matCaminhosMin - 
  * @return int
- * @since 11/2022 xx:xx
+ * @since 11/2022 20:00
  */
-
-int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
+int calculaCaminhoMin(Matriz matViagem, Matriz matCaminhosMin){
     
-    int lin = matPesos.linhas - 1;
-    int col = matPesos.colunas - 1;
+    int lin = matViagem.linhas - 1;
+    int col = matViagem.colunas - 1;
 
-    matCaminhos.matDinamica[lin][col] = matPesos.matDinamica[lin][col];
-    printMatriz(matCaminhos);
-    
+    matCaminhosMin.matDinamica[lin][col] = matViagem.matDinamica[lin][col];
 
     for (int i = lin; i >= 0; i--){
         
@@ -141,89 +163,84 @@ int calculaCaminhoMin(Matriz matPesos, Matriz matCaminhos){
             
             if (i < lin && j < col){
 
-                if (matCaminhos.matDinamica[i+1][j] == 0 || matCaminhos.matDinamica[i][j+1] == 0 || matCaminhos.matDinamica[i + 1][j] > matCaminhos.matDinamica[i][j + 1]){
+                if (matCaminhosMin.matDinamica[i+1][j] == 0 || matCaminhosMin.matDinamica[i][j+1] == 0 || matCaminhosMin.matDinamica[i + 1][j] > matCaminhosMin.matDinamica[i][j + 1]){
                    
-                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
-                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
-                    printMatriz(matCaminhos); putchar('\n');
+                    matCaminhosMin.matDinamica[i][j] = matViagem.matDinamica[i][j] + matCaminhosMin.matDinamica[i + 1][j];
+                    matCaminhosMin.matDinamica[i][j] = matViagem.matDinamica[i][j] + matCaminhosMin.matDinamica[i][j + 1];
 
                 } else {
                    
-                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
-                    matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
-                    printMatriz(matCaminhos); putchar('\n');
+                    matCaminhosMin.matDinamica[i][j] = matViagem.matDinamica[i][j] + matCaminhosMin.matDinamica[i][j + 1];
+                    matCaminhosMin.matDinamica[i][j] = matViagem.matDinamica[i][j] + matCaminhosMin.matDinamica[i + 1][j];
 
                 }
 
             } else if (i < lin) {
-                matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i + 1][j];
-                printMatriz(matCaminhos); putchar('\n');
-                    
+                matCaminhosMin.matDinamica[i][j] = matViagem.matDinamica[i][j] + matCaminhosMin.matDinamica[i + 1][j];
+
             } else if (j < col) {
-                matCaminhos.matDinamica[i][j] = matPesos.matDinamica[i][j] + matCaminhos.matDinamica[i][j + 1];
-                printMatriz(matCaminhos); putchar('\n');
+                matCaminhosMin.matDinamica[i][j] = matViagem.matDinamica[i][j] + matCaminhosMin.matDinamica[i][j + 1];
 
             }
         }
     }
     
-    return matCaminhos.matDinamica[0][0];    
+    return matCaminhosMin.matDinamica[0][0];    
 }
 
-/**Método encontraCaminhoMinMemorization -  
+/**Função encontraCaminhoMinMemorization -  
  * @author @João Vitor Chagas Lobo
- * @param Matriz matPesos - 
- * @param Matriz matCaminhos - 
+ * @param Matriz matViagem - 
+ * @param Matriz matCaminhosMin - 
  * @param int i - Valor que representa quantidade de LINHAS da matriz.
  * @param int j - Valor que representa quantidade de COLUNAS da matriz.
  * @param int* numCaminhosMins - 
- * @since 11/2022 xx:xx
+ * @since 11/2022 20:00
  */
 
 //Usa os valores já calculados na matriz de caminhos mínimos para acha-los
-void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz matPesos, int* numCaminhosMins){
+void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhosMin, Matriz matViagem, int* numCaminhosMins){
     
-    if(i == matPesos.linhas - 1 && j == matPesos.colunas - 1){
+    if(i == matViagem.linhas - 1 && j == matViagem.colunas - 1){
 
         *numCaminhosMins += 1;
         return;
 
     } else {
-        if (i + 1 < matPesos.linhas && j + 1 < matPesos.colunas){
+        if (i + 1 < matViagem.linhas && j + 1 < matViagem.colunas){
 
-            if (matCaminhos.matDinamica[i+1][j] == matCaminhos.matDinamica[i][j+1]){
+            if (matCaminhosMin.matDinamica[i+1][j] == matCaminhosMin.matDinamica[i][j+1]){
                 
-                encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
-                encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
-                return;
+                encontraCaminhoMinMemorization(i + 1, j, matCaminhosMin, matViagem, numCaminhosMins);
+                encontraCaminhoMinMemorization(i, j + 1, matCaminhosMin, matViagem, numCaminhosMins);
+                // return;
 
-            } else if (matCaminhos.matDinamica[i+1][j] < matCaminhos.matDinamica[i][j+1]) {
+            } else if (matCaminhosMin.matDinamica[i+1][j] < matCaminhosMin.matDinamica[i][j+1]) {
 
-                encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
-                return;
+                encontraCaminhoMinMemorization(i + 1, j, matCaminhosMin, matViagem, numCaminhosMins);
+                // return;
 
             } else {
 
-                encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
-                return;
+                encontraCaminhoMinMemorization(i, j + 1, matCaminhosMin, matViagem, numCaminhosMins);
+                // return;
 
             }
             
-        } else if (i + 1 < matPesos.linhas){
+        } else if (i + 1 < matViagem.linhas){
             
-            encontraCaminhoMinMemorization(i + 1, j, matCaminhos, matPesos, numCaminhosMins);
-            return;
+            encontraCaminhoMinMemorization(i + 1, j, matCaminhosMin, matViagem, numCaminhosMins);
+            // return;
 
-        }else if (j + 1 < matPesos.colunas){
+        }else if (j + 1 < matViagem.colunas){
             
-            encontraCaminhoMinMemorization(i, j + 1, matCaminhos, matPesos, numCaminhosMins);
+            encontraCaminhoMinMemorization(i, j + 1, matCaminhosMin, matViagem, numCaminhosMins);
 
         }
     }
-
 }
 
-/**Método encontraCaminhoMinFrocaBruta -  
+/**Função encontraCaminhoMinBacktracking -  
  * @author @João Vitor Chagas Lobo
  * @param Matriz caminhos - 
  * @param int i - Valor que representa quantidade de LINHAS da matriz.
@@ -231,50 +248,8 @@ void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhos, Matriz mat
  * @param int* numCaminhosMins - 
  * @param int caminhoMin - 
  * @param int somaCaminho - 
- * @since 11/2022 xx:xx
+ * @since 11/2022 20:00
  */
-
-//Testa todas as possibilidades e verifica se o caminho total é igual ao caminho mínimo
-void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
-
-    somaCaminho += caminhos.matDinamica[i][j];
-
-    if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
-
-        if (somaCaminho == caminhoMin){
-
-            *numCaminhosMins += 1;
-        }
-
-        somaCaminho = 0;
-        return;
-
-    } else {
-
-        if (i + 1 < caminhos.linhas){
-
-            encontraCaminhoMinFrocaBruta(i + 1, j, caminhos, caminhoMin, somaCaminho, numCaminhosMins);
-        } 
-
-        if (j + 1 < caminhos.colunas){
-
-            encontraCaminhoMinFrocaBruta(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
-        }
-    }
-
-}
-
-/**Método encontraCaminhoMinBacktracking -  
- * @author @João Vitor Chagas Lobo
- * @param Matriz caminhos - 
- * @param int i - Valor que representa quantidade de LINHAS da matriz.
- * @param int j - Valor que representa quantidade de COLUNAS da matriz.
- * @param int* numCaminhosMins - 
- * @param int caminhoMin - 
- * @param int somaCaminho - 
- * @since 11/2022 xx:xx
- */
-
 //Caminha para todas as possibilidades e retorna caso a soma seja maior que a soma mínima
 void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
 
@@ -309,4 +284,116 @@ void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMi
         }
     }
 
+}
+
+/**Função encontraCaminhoMinFrocaBruta -  
+ * @author @João Vitor Chagas Lobo
+ * @param Matriz caminhos - 
+ * @param int i - Valor que representa quantidade de LINHAS da matriz.
+ * @param int j - Valor que representa quantidade de COLUNAS da matriz.
+ * @param int* numCaminhosMins - 
+ * @param int caminhoMin - 
+ * @param int somaCaminho - 
+ * @since 11/2022 20:00
+ */
+//Testa todas as possibilidades e verifica se o caminho total é igual ao caminho mínimo
+void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
+
+    somaCaminho += caminhos.matDinamica[i][j];
+
+    if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
+
+        if (somaCaminho == caminhoMin){
+
+            *numCaminhosMins += 1;
+        }
+
+        somaCaminho = 0;
+        return;
+
+    } else {
+
+        if (i + 1 < caminhos.linhas){
+
+            encontraCaminhoMinFrocaBruta(i + 1, j, caminhos, caminhoMin, somaCaminho, numCaminhosMins);
+        } 
+
+        if (j + 1 < caminhos.colunas){
+
+            encontraCaminhoMinFrocaBruta(i, j + 1, caminhos, caminhoMin, somaCaminho, numCaminhosMins);    
+        }
+    }
+}
+
+void encontraCaminhoDivK(int i, int j, Matriz caminhos, int k, int somaCaminho, int* numCaminhosDivK){
+
+    somaCaminho += caminhos.matDinamica[i][j];
+
+    if(i == caminhos.linhas - 1 && j == caminhos.colunas - 1){
+
+        if (somaCaminho % k == 0){
+            *numCaminhosDivK += 1;
+        }
+
+        somaCaminho = 0;
+        return;
+
+    } else {
+
+        if (i + 1 < caminhos.linhas){
+
+            encontraCaminhoDivK(i + 1, j, caminhos, k, somaCaminho, numCaminhosDivK);
+        } 
+
+        if (j + 1 < caminhos.colunas){
+
+            encontraCaminhoDivK(i, j + 1, caminhos, k, somaCaminho, numCaminhosDivK);    
+        }
+    }
+}
+
+void encontraCaminhoMinImprime(int i, int j, Matriz matCaminhosMin, Matriz matViagem, Matriz matPrint, int* numCaminhosMins){
+    
+    matPrint.matDinamica[i][j] = 1;
+
+    if(i == matViagem.linhas - 1 && j == matViagem.colunas - 1){
+        //printMatriz(matPrint);
+        printCaminhoEmoji(matPrint.matDinamica, matPrint.linhas, matPrint.colunas);
+        //numeraMatrizZeros(&matPrint);
+        *numCaminhosMins += 1;
+        return;
+
+    } else {
+        if (i + 1 < matViagem.linhas && j + 1 < matViagem.colunas){
+            
+            if (matCaminhosMin.matDinamica[i+1][j] == matCaminhosMin.matDinamica[i][j+1]){
+                
+                encontraCaminhoMinImprime(i + 1, j, matCaminhosMin, matViagem, matPrint, numCaminhosMins);
+                encontraCaminhoMinImprime(i, j + 1, matCaminhosMin, matViagem, matPrint, numCaminhosMins);
+                //return;
+
+            } else if (matCaminhosMin.matDinamica[i+1][j] < matCaminhosMin.matDinamica[i][j+1]) {
+
+                encontraCaminhoMinImprime(i + 1, j, matCaminhosMin, matViagem, matPrint, numCaminhosMins);
+                //return;
+
+            } else {
+
+                encontraCaminhoMinImprime(i, j + 1, matCaminhosMin, matViagem, matPrint, numCaminhosMins);
+                //return;
+
+            }
+            
+        } else if (i + 1 < matViagem.linhas){
+            
+            encontraCaminhoMinImprime(i + 1, j, matCaminhosMin, matViagem, matPrint, numCaminhosMins);
+            //return;
+
+        }else if (j + 1 < matViagem.colunas){
+            
+            encontraCaminhoMinImprime(i, j + 1, matCaminhosMin, matViagem, matPrint, numCaminhosMins);
+
+        }
+    }
+    matPrint.matDinamica[i][j] = 0;
 }

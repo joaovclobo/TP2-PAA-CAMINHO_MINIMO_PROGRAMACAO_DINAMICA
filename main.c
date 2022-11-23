@@ -22,10 +22,10 @@
 
 int main(){
 
-    int linhas, colunas, opcao, caminhoMin;
+    int linhas, colunas, k, escolhaUsuario;
     short encerra = false;
 
-    Matriz matPesos, matCaminhos;
+    Matriz matViagem, matCaminhosMin, matImprime;
 
     FILE *fptr;
 
@@ -34,7 +34,7 @@ int main(){
     do {
         
         int numCaminhosMin = 0;
-        int escolhaUsuario = 0;
+        int numCaminhosDivk = 0;
         
         //Variáveis usadas no cálculo de tempo de execução:
         double time_spent = 0.0;
@@ -43,64 +43,88 @@ int main(){
 
         fptr = abreArquivo();
 
-        /** Incicialização das matrizes e vetores*/
+        //Incicialização das matrizes
         leituraLinhasColunas(fptr, &linhas, &colunas);
 
-        inicializaMatriz(&matCaminhos, linhas, colunas);
-        printf("\nRepresentação dos caminhos:\n");
-        printMatriz(matCaminhos);
+        inicializaMatriz(&matCaminhosMin, linhas, colunas);
+        inicializaMatriz(&matImprime, linhas, colunas);
+        inicializaMatriz(&matViagem, linhas, colunas);
 
-        inicializaMatriz(&matPesos, linhas, colunas);
-        copiaMatrizFILE(fptr, linhas, colunas, (matPesos.matDinamica));
+        copiaMatrizFILE(fptr, linhas, colunas, (matViagem.matDinamica));
         
-        printf("\nRepresentação dos pesos dos caminhos:\n");
-        printMatriz(matPesos);
+        printf("\nRepresentação da matriz de caminhos da viagem:\n");
+        printMatriz(matViagem);
         putchar('\n');
 
-        opcoesEncontraCaminho();
-        scanf("%d", &escolhaUsuario);
         
-        int somaCaminhoMin = calculaCaminhoMin(matPesos, matCaminhos);
+        printf("Calculando a matriz de caminhos mínimos...\nMatriz com a soma dos caminhos:\n");
+        int somaMinima = calculaCaminhoMin(matViagem, matCaminhosMin);
+        printMatriz(matCaminhosMin);
+
+        escolhaUsuario = opcoesEncontraCaminho();
 
         do {
             
             switch (escolhaUsuario){
                 case 1:
                     begin = clock(); 
-                    encontraCaminhoMinMemorization(0, 0, matCaminhos, matPesos, &numCaminhosMin);
-                    break;
+                    encontraCaminhoMinMemorization(0, 0, matCaminhosMin, matViagem, &numCaminhosMin);
+                break;
                 
                 case 2:
-                    begin = clock(); 
-                    encontraCaminhoMinFrocaBruta(0, 0, matPesos, somaCaminhoMin, 0, &numCaminhosMin);
-                    break;
+                    begin = clock();
+                    encontraCaminhoMinBacktracking(0, 0, matViagem, somaMinima, 0, &numCaminhosMin);
+                break;
 
                 case 3:
                     begin = clock(); 
-                    encontraCaminhoMinBacktracking(0, 0, matPesos, somaCaminhoMin, 0, &numCaminhosMin);
-                    break;
+                    encontraCaminhoMinFrocaBruta(0, 0, matViagem, somaMinima, 0, &numCaminhosMin);
+                break;
+
+                case 4:
+                    begin = clock(); 
+                    encontraCaminhoMinImprime(0, 0, matCaminhosMin, matViagem, matImprime, &numCaminhosMin);
+                break;
+
+                case 5:
+                    begin = clock(); 
+
+                    printf("Digite o valor de \"k\": ");
+                    scanf("%d", &k);
+
+                    encontraCaminhoDivK(0, 0, matViagem, k, 0, &numCaminhosDivk);
+                    
+                    printf("Quantidade de caminhos divisiveis por k = %d: %d\n", k, numCaminhosDivk);
+                break;
 
                 default:
                     printf("Entre com uma opcao valida! \n");
-                    break;
+                    escolhaUsuario = opcoesEncontraCaminho();
+
+                break;
+
             }
 
-        } while (escolhaUsuario <= 0 || escolhaUsuario > 3);
-        
+        } while (escolhaUsuario <= 0 || escolhaUsuario > 5);
+    
         end = clock();
- 
-        // calcula o tempo decorrido encontrando a diferença (end - begin) e
-        // dividindo a diferença por CLOCKS_PER_SEC para converter em segundos
+    
+        // calcula o tempo decorrido encontrando a diferença (end - begin) e dividindo a diferença por CLOCKS_PER_SEC para converter em segundos
         time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
- 
+    
+        if (escolhaUsuario <= 4){
 
-        printf("Soma Mínima: %d\n", somaCaminhoMin);
-        printf("Quantidade de Caminhos: %d\n", numCaminhosMin);
+            printf("\nSoma mínima: %d\n", somaMinima);
+            printf("Quantidade de caminhos minimos: %d\n", numCaminhosMin);
 
-        printf("\nTempo gasto para a execução: %f segundos\n", time_spent);
+            if (escolhaUsuario < 4){
+                printf("\nTempo gasto para a execução: %f segundos\n", time_spent);
 
-        free(matCaminhos.matDinamica);
-        free(matPesos.matDinamica);
+            }
+        }
+        
+        free(matCaminhosMin.matDinamica);
+        free(matViagem.matDinamica);
 
         printf("\nDeseja encerrar o programa?\n    1) - Sim.\n    0) - Não.\n");
         scanf("%hu", &encerra);

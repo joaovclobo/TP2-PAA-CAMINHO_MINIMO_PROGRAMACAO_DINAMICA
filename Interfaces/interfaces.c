@@ -21,7 +21,7 @@
 
 /** Funções de interface*/
 
- /**Método cabecalhoMain -  
+ /**FunçãocabecalhoMain -  
  * @author x
  * @since 11/2022 xx:xx
  */
@@ -33,7 +33,7 @@ void cabecalhoMain(){
     printf("|===========================================================================================================|\n\n");
 }
 
-/**Método cabecalhoGerador -  
+/**Função cabecalhoGerador -  
  * @author @João Vitor Chagas Lobo
  * @since 11/2022 xx:xx
  */
@@ -45,73 +45,23 @@ void cabecalhoGerador(){
     printf("|===========================================================================================================|\n\n");
 }
 
-/**Método menuOpcoes -  
- * @author x
- * @return int
- * @since 11/2022 xx:xx
- */
-
-//TODO avaliar se da pra reaproveitar
-int menuOpcoes(){
-
-    int opcao = 1;
-    
-    printf("\nDigite uma opção para mostrar o caminho resultante, caso haja solução para a fazenda :\n\n\
-    1) - Sequencia de coordenadas da matriz (opção sugerida pela especificação).\n");
-
-    scanf("%d", &opcao);
-    return opcao;
-}
-
-/**Método exibicaoOpcoes -  
- * @author x
- * @since 11/2022 xx:xx
- */
-
-//TODO avaliar se da pra reaproveitar
-void exibicaoOpcoes(int opcao, Matriz matCaminhos, Matriz matrizFazenda, int linhas, int colunas){
-
-    switch (opcao){
-
-        case 1:
-            printMatriz(matCaminhos);
-            break;
-
-        default:
-            break;
-    }
-}
-
-/** Funções para mostar as matrizes ou vetores*/
-
-/**Método printVetor -  Função para mostar as matrizes ou vetores
- * @author x
- * @since 11/2022 xx:xx
- */
-
-//TODO avaliar se da pra reaproveitar
-void printVetor(int* vetor, int tamVetor){
-    for (int i = 0; i < tamVetor; i++){
-        printf("%d ", vetor[i]);
-
-    }
-
-    putchar('\n');
-}
-
-/** Funções para mostar as matrizes ou vetores*/
-
-/**Método opcoesEncontraCaminho -  Função que mostra opções para o usuário escolher a função para escolher o caminho;
+/**Função opcoesEncontraCaminho -  Função que mostra opções para o usuário escolher a função para escolher o caminho;
  * @author @Aroldo Augusto Barbosa Simões
  * @author @João Vitor Chagas Lobo
  * @since 21/11/2022 19:00
  */
 
-void opcoesEncontraCaminho(){
+int opcoesEncontraCaminho(){
 
-    printf("\nDEscolha uma das seguintes opções para encontrar o caminhos:\n\n\
-    1) - Utilizando uma função que usa \"Memorization\".\n\
-    2) - Utilizando uma função que usa Backtracking.\n\
-    3) - Utilizando uma função que usa Froça Bruta.\n");
+    int escolhaUsuario;
 
+    printf("\nEscolha uma das seguintes opções para encontrar o caminhos:\n\n\
+    1) - Utilizando uma função que usa \"Memorization\";\n\
+    2) - Utilizando uma função que usa Backtracking;\n\
+    3) - Utilizando uma função que usa Froça Bruta;\n\
+    4) - Encontrar e mostrar os caminhos (utilizando função que usa \"Memorization\");\n\
+    5) - Encontrar a numero de caminhos divisiveis por k (utilizando função que usa Força Bruta).\n");
+
+    scanf("%d", &escolhaUsuario);
+    return escolhaUsuario;
 }
