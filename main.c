@@ -82,8 +82,9 @@ int main(){
                 break;
 
                 case 4:
-                    begin = clock(); 
-                    encontraCaminhoMinImprime(0, 0, matCaminhosMin, matViagem, matImprime, &numCaminhosMin);
+                    begin = clock();
+                    int option = opcoesImprimirCaminho();
+                    encontraCaminhoMinImprime(0, 0, matCaminhosMin, matViagem, matImprime, &numCaminhosMin, option);
                 break;
 
                 case 5:

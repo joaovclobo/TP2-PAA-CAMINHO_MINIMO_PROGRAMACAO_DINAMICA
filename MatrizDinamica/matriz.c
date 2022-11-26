@@ -84,11 +84,10 @@ void printCaminhoEmoji(int **caminho, int linhas, int colunas){
     for(int i = 0; i < linhas; i++){
         for(int j = 0; j < colunas; j++){
             if(caminho[i][j] != 0){
-                //caminhoEmoji[i][j] = "\U0001F6F8";
-                caminhoEmoji[i][j] = "\U0001F7E6";
+                caminhoEmoji[i][j] = "\U0001F6F8";
             }
             else{
-                caminhoEmoji[i][j] = "\U00002B1B"; 
+                caminhoEmoji[i][j] = "\U0001F7E6"; 
                 
             }
         }
@@ -183,58 +182,6 @@ int calculaCaminhoMin(Matriz matViagem, Matriz matCaminhosMin){
     return matCaminhosMin.matDinamica[0][0];    
 }
 
-
-/**Função calculaCaminhoMinPrint -  
- * @author @Thiago Cândido Rocha
- * @param Matriz matViagem - 
- * @param Matriz matPrint - 
- * @return
- * @since 11/2022 10:46
- */
-
-void calculaCaminhoMinPrint(Matriz matViagem, Matriz matPrint){
-    
-    int lin = matViagem.linhas - 1;
-    int col = matViagem.colunas - 1;
-
-    matPrint.matDinamica[lin][col] = matViagem.matDinamica[lin][col];
-
-    
-
-    for (int i = lin; i >= 0; i--){
-        printMatriz(matPrint); 
-        for (int j = col; j >= 0; j--){
-            
-            if (i < lin && j < col){
-
-                if (matPrint.matDinamica[i+1][j] == 0 || matPrint.matDinamica[i][j+1] == 0 || 
-                        matPrint.matDinamica[i + 1][j] > matPrint.matDinamica[i][j + 1]){
-                   
-                    matPrint.matDinamica[i][j] = matViagem.matDinamica[i][j] + matPrint.matDinamica[i + 1][j];
-                    matPrint.matDinamica[i][j] = matViagem.matDinamica[i][j] + matPrint.matDinamica[i][j + 1];
-
-                } else {
-                   
-                    matPrint.matDinamica[i][j] = matViagem.matDinamica[i][j] + matPrint.matDinamica[i][j + 1];
-                    matPrint.matDinamica[i][j] = matViagem.matDinamica[i][j] + matPrint.matDinamica[i + 1][j];
-
-                }
-
-            } else if (i < lin) {
-                matPrint.matDinamica[i][j] = matViagem.matDinamica[i][j] + matPrint.matDinamica[i + 1][j];
-
-            } else if (j < col) {
-                matPrint.matDinamica[i][j] = matViagem.matDinamica[i][j] + matPrint.matDinamica[i][j + 1];
-
-            }
-        }
-        
-    }
-
-    printMatriz(matPrint); 
-    
-      
-}
 
 /**Função encontraCaminhoMinMemorization -  
  * @author @João Vitor Chagas Lobo
@@ -415,7 +362,11 @@ void encontraCaminhoDivK(int i, int j, Matriz caminhos, int k, int somaCaminho, 
 
 void encontraCaminhoMinImprime(int i, int j, Matriz matCaminhosMin, Matriz matViagem, Matriz matPrint, int* numCaminhosMins, int opcoes){
     
-    matPrint.matDinamica[i][j] = 1;
+    if(opcoes != 4)
+        matPrint.matDinamica[i][j] = 1;
+
+    else
+        matPrint.matDinamica[i][j] = matCaminhosMin.matDinamica[i][j];
 
     if(i == matViagem.linhas - 1 && j == matViagem.colunas - 1){
         //printMatriz(matPrint);
@@ -430,7 +381,7 @@ void encontraCaminhoMinImprime(int i, int j, Matriz matCaminhosMin, Matriz matVi
                 printCaminhoCoordenadas(matPrint);
                 break;
             case 4:
-                calculaCaminhoMinPrint(matViagem, matPrint);
+                printMatriz(matPrint);
                 break;
         }
         //numeraMatrizZeros(&matPrint);
