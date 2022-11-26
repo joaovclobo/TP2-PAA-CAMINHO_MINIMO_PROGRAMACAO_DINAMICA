@@ -5,7 +5,7 @@
  * 
  * @authors @João Vitor Chagas Lobo, @Thiago Cândido, @Aroldo Augusto Barbosa Simões
  * 
- * @class GeradorCaminhos.c
+ * @Nome do arquivo GeradorCaminhos.c
  * 
  * @headerfile Interface.h
  * 

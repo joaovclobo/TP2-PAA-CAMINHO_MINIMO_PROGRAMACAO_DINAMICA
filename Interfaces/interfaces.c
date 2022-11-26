@@ -5,7 +5,7 @@
  * 
  * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
- * @class interfaces.c
+ * @Nome do arquivo interfaces.c
  * 
  * @headerfile interfaces.h
  * 

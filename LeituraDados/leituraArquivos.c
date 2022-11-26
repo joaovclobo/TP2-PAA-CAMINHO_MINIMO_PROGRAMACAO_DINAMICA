@@ -5,7 +5,7 @@
  * 
  * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
- * @class leituraArquivos.c
+ * @Nome do arquivo leituraArquivos.c
  * 
  * @headerfile leituraArquivos.h
  * 
@@ -26,8 +26,8 @@ FILE* abreArquivo(){
 
     do{
         printf("\nInsira o nome completo do arquivo com a fazenda (o arquivo deve estar na mesma pasta que está este executavel e deve ter a extensão \".txt\")\n");
-        // scanf("%s", nomeArquivo);
-        strcpy(nomeArquivo, "./ArquivosTeste/cam20");
+        scanf("%s", nomeArquivo);
+        //strcpy(nomeArquivo, "./ArquivosTeste/matrizExemplo1");
         
         fptr = fopen(strcat(nomeArquivo, ".txt"), "r");
 

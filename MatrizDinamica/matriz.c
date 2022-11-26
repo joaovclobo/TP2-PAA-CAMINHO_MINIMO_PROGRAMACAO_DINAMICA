@@ -5,7 +5,7 @@
  * 
  * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
- * @class matriz.c
+ * @Nome do arquivo matriz.c
  * 
  * @headerfile matriz.h
  * 
@@ -27,6 +27,7 @@
  * @param int j - Valor que representa quantidade de COLUNAS da matriz.
  * @since 10/2022 14:00
  */
+
 void inicializaMatriz(Matriz *matriz, int i, int j){
     matriz->linhas = i;
     matriz->colunas = j;
@@ -42,6 +43,7 @@ void inicializaMatriz(Matriz *matriz, int i, int j){
  * @param Matriz *matriz - Ponteiro para matriz dinâmica.
  * @since 10/2022 14:00
  */
+
 void printMatriz(Matriz matriz){
 
     for (int i = 0; i < matriz.colunas; i++){
@@ -77,6 +79,7 @@ void printMatriz(Matriz matriz){
  * @param int colunas
  * @since 11/2022 20:00
  */
+
 void printCaminhoEmoji(int **caminho, int linhas, int colunas){
     int emojiSort;
     char *caminhoEmoji[linhas][colunas];
@@ -128,6 +131,7 @@ void printCaminhoCoordenadas(Matriz matriz){
  * @param int maxCaminho - 
  * @since 11/2022 20:00
  */
+
 void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho){
 
     for (int i = 0; i < linhas; i++){
@@ -144,6 +148,7 @@ void geraCaminhos(int linhas, int colunas, int** matrizVazia, int maxCaminho){
  * @return int
  * @since 11/2022 20:00
  */
+
 int calculaCaminhoMin(Matriz matViagem, Matriz matCaminhosMin){
     
     int lin = matViagem.linhas - 1;
@@ -245,6 +250,7 @@ void encontraCaminhoMinMemorization(int i, int j, Matriz matCaminhosMin, Matriz 
  * @param int somaCaminho - 
  * @since 11/2022 20:00
  */
+
 //Caminha para todas as possibilidades e retorna caso a soma seja maior que a soma mínima
 void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
 
@@ -291,6 +297,7 @@ void encontraCaminhoMinBacktracking(int i, int j, Matriz caminhos, int caminhoMi
  * @param int somaCaminho - 
  * @since 11/2022 20:00
  */
+
 //Testa todas as possibilidades e verifica se o caminho total é igual ao caminho mínimo
 void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin, int somaCaminho, int* numCaminhosMins){
 
@@ -319,6 +326,17 @@ void encontraCaminhoMinFrocaBruta(int i, int j, Matriz caminhos, int caminhoMin,
         }
     }
 }
+
+/**Função encontraCaminhoDivK -  
+ * @author @x
+ * @param Matriz caminhos - 
+ * @param int i - Valor que representa quantidade de LINHAS da matriz.
+ * @param int j - Valor que representa quantidade de COLUNAS da matriz.
+ * @param int* numCaminhosDivK - 
+ * @param int k - 
+ * @param int somaCaminho - 
+ * @since 11/2022 20:00
+ */
 
 void encontraCaminhoDivK(int i, int j, Matriz caminhos, int k, int somaCaminho, int* numCaminhosDivK){
 
