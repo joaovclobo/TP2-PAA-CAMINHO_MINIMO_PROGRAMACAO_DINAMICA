@@ -6,7 +6,7 @@
  * 
  * @authors @João Vitor Chagas Lobo; @Thiago Cândido; @Aroldo Augusto Barbosa Simões
  * 
- * @class main.c
+ * @Nome do arquivo main.c
  * 
  * @headerfile Interface.h
  * @headerfile time.h
