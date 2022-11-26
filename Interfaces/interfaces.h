@@ -22,3 +22,4 @@
 void cabecalhoMain();
 void cabecalhoGerador();
 int opcoesEncontraCaminho(); //Opções para o usuário escolher a função para escolher o caminho;
+int opcoesImprimirCaminho();

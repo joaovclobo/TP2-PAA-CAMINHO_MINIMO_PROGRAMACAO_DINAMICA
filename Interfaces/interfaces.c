@@ -65,3 +65,20 @@ int opcoesEncontraCaminho(){
     scanf("%d", &escolhaUsuario);
     return escolhaUsuario;
 }
+
+int opcoesImprimirCaminho(){
+    int option = 0;
+
+    printf("\nEscolha uma das seguintes opções para visualizar os caminhos mínimos:\n\n\
+    1) - Matriz caminho colorida\n\
+    2) - Matriz caminho representada com emojis\n\
+    3) - Forma tradicional: Coordenadas\n\
+    4) - Matriz de pesos colorida\n");
+    
+
+    scanf("%d", &option);
+
+    return option;
+
+
+}
