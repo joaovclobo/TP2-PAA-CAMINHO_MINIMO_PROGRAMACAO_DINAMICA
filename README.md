@@ -31,4 +31,4 @@ Instruções para execução do programa:
     
     ./GeraCam -> execução do sistema no modo geração de caminhos.
 
-  - Para sair do programa a qualquer momento pressiona 'Ctrl + c'.
+  - Para sair do programa a qualquer momento pressione 'Ctrl + c'.
