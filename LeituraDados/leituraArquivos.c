@@ -27,7 +27,6 @@ FILE* abreArquivo(){
     do{
         printf("\nInsira o nome completo do arquivo com a fazenda (o arquivo deve estar na mesma pasta que está este executavel e deve ter a extensão \".txt\")\n");
         scanf("%s", nomeArquivo);
-        //strcpy(nomeArquivo, "./ArquivosTeste/matrizExemplo1");
         
         fptr = fopen(strcat(nomeArquivo, ".txt"), "r");
 
