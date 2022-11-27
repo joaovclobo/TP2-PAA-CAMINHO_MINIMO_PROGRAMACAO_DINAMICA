@@ -32,10 +32,9 @@ int main(){
     time_t tempo;
     srand((time(&tempo)));
 
-   cabecalhoGerador();
+    cabecalhoGerador();
 
     do {
-        int escolhaGeradorCaminhos = 0;
 
         printf("Insira o nome completo do arquivo que será gerado (o arquivo será salvo na mesma pasta que está este executavel com a extensão \".txt\")\n");
         scanf("%s", nomeArquivo);
